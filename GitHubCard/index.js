@@ -4,7 +4,7 @@ import axios from 'axios'
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
-// const sassyFatCat = 'https://api.github.com/users/SassyFatCat';
+const sassyFatCat = 'https://api.github.com/users/SassyFatCat';
 // axios.get(sassyFatCat)
 // .then(successData => console.log(successData))
 // .catch(failData => console.log(failData));
@@ -20,7 +20,9 @@ import axios from 'axios'
   STEP 4: Pass the data received from Github into your function,
     and append the returned markup to the DOM as a child of .cards
 */
-
+// axios.get(sassyFatCat)
+// .then(successData => console.log(cardMaker(successData)))
+// .catch(failData => console.log(failData));
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
     follow this link in your browser https://api.github.com/users/<Your github name>/followers,
@@ -56,20 +58,43 @@ const followersArray = [];
 function cardMaker(userData) {
 // ELEMENT CREATION
 const cardDiv = document.createElement('div');
+    cardDiv.classList.add('card');
 const userImg = document.createElement('img');
+    userImg.src = userData.data.avatar_url;
 const cardInfo = document.createElement('div');
+    cardInfo.classList.add('card-info');
 const userName = document.createElement('h3');
+    userName.classList.add('name');
+    userName.textContent = userData.data.name;
 const userUsername = document.createElement('p');
+    userUsername.classList.add('username');
+    userUsername.textContent = userData.data.login;
 const location = document.createElement('p');
+    location.textContent = `Location: ${userData.data.location}`;
 const profileInfo = document.createElement('p');
+    profileInfo.textContent = "Profile: ";
 const profileLink = document.createElement('a');
+    profileLink.setAttribute(`href`, `${userData.data.html_url}`);
 const followers = document.createElement('p');
 const following = document.createElement('p');
+    following.textContent = userData.data.following;
 const bio = document.createElement('p');
+
+//STRUCTURE ELEMENTS
+cardDiv.appendChild(userImg);
+cardDiv.appendChild(cardInfo);
+cardInfo.appendChild(userName); 
+cardInfo.appendChild(userUsername);
+cardInfo.appendChild(location); 
+cardInfo.appendChild(profileInfo); 
+cardInfo.appendChild(followers); 
+cardInfo.appendChild(following); 
+cardInfo.appendChild(bio);
+profileInfo.appendChild(profileLink);
 
 return cardDiv
 }
-console.log(cardMaker())
+
 /*
   List of LS Instructors Github username's:
     tetondan
