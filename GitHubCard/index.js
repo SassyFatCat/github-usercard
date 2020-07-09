@@ -20,10 +20,10 @@ const sassyFatCat = 'https://api.github.com/users/SassyFatCat';
   STEP 4: Pass the data received from Github into your function,
     and append the returned markup to the DOM as a child of .cards
 */
-// const cards = document.querySelector('.cards');
-// axios.get(sassyFatCat)
-// .then(successData => cards.appendChild(cardMaker(successData)))
-// .catch(failData => console.log(failData));
+const cards = document.querySelector('.cards');
+axios.get(sassyFatCat)
+.then(successData => cards.appendChild(cardMaker(successData)))
+.catch(failData => console.log(failData));
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
     follow this link in your browser https://api.github.com/users/<Your github name>/followers,
@@ -35,7 +35,13 @@ const sassyFatCat = 'https://api.github.com/users/SassyFatCat';
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+
+followersArray.forEach(x => {
+axios.get(`https://api.github.com/users/${x}`)
+.then(successData => cards.appendChild(cardMaker(successData)))
+.catch(failData => console.log(failData));
+})
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
