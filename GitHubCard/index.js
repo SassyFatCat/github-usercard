@@ -1,9 +1,13 @@
+import axios from 'axios'
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
-
+// const sassyFatCat = 'https://api.github.com/users/SassyFatCat';
+// axios.get(sassyFatCat)
+// .then(successData => console.log(successData))
+// .catch(failData => console.log(failData));
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -49,7 +53,23 @@ const followersArray = [];
       </div>
     </div>
 */
+function cardMaker(userData) {
+// ELEMENT CREATION
+const cardDiv = document.createElement('div');
+const userImg = document.createElement('img');
+const cardInfo = document.createElement('div');
+const userName = document.createElement('h3');
+const userUsername = document.createElement('p');
+const location = document.createElement('p');
+const profileInfo = document.createElement('p');
+const profileLink = document.createElement('a');
+const followers = document.createElement('p');
+const following = document.createElement('p');
+const bio = document.createElement('p');
 
+return cardDiv
+}
+console.log(cardMaker())
 /*
   List of LS Instructors Github username's:
     tetondan
