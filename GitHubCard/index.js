@@ -22,8 +22,22 @@ const sassyFatCat = 'https://api.github.com/users/SassyFatCat';
 */
 const cards = document.querySelector('.cards');
 axios.get(sassyFatCat)
-.then(successData => cards.appendChild(cardMaker(successData)))
+.then(successData => {cards.appendChild(cardMaker(successData)); getFollowing(successData)})
 .catch(failData => console.log(failData));
+
+//STRETCH --------------------------------------------------------------------->
+function getFollowing(following) {
+  axios.get(`https://api.github.com/users/${following.data.login}/following`)
+    .then(successData => {
+      successData.data.forEach(x => {
+        axios.get(`https://api.github.com/users/${x.login}`)
+        .then(newUserData => cards.appendChild(cardMaker(newUserData)))
+        .catch(failed => console.log(failed))
+      });
+    })
+    .catch(failData => console.log(failData))
+}
+
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
     follow this link in your browser https://api.github.com/users/<Your github name>/followers,
