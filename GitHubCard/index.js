@@ -20,8 +20,9 @@ const sassyFatCat = 'https://api.github.com/users/SassyFatCat';
   STEP 4: Pass the data received from Github into your function,
     and append the returned markup to the DOM as a child of .cards
 */
+// const cards = document.querySelector('.cards');
 // axios.get(sassyFatCat)
-// .then(successData => console.log(cardMaker(successData)))
+// .then(successData => cards.appendChild(cardMaker(successData)))
 // .catch(failData => console.log(failData));
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
@@ -75,10 +76,13 @@ const profileInfo = document.createElement('p');
     profileInfo.textContent = "Profile: ";
 const profileLink = document.createElement('a');
     profileLink.setAttribute(`href`, `${userData.data.html_url}`);
+    profileLink.textContent = `${userData.data.html_url}`;
 const followers = document.createElement('p');
+    followers.textContent = `Followers: ${userData.data.followers}`;
 const following = document.createElement('p');
-    following.textContent = userData.data.following;
+    following.textContent = `Following: ${userData.data.following}`;
 const bio = document.createElement('p');
+    bio.textContent = `Bio: ${userData.data.bio}`;
 
 //STRUCTURE ELEMENTS
 cardDiv.appendChild(userImg);
